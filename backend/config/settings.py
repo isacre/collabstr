@@ -24,7 +24,8 @@ MIDDLEWARE = [
 # Frontend is hosted separately (Netlify/Vercel), so allow its origin.
 # Comma-separated list in env; defaults cover local static-server testing.
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5501'
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
 ]
 
 ROOT_URLCONF = "config.urls"

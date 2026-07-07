@@ -1,13 +1,14 @@
-// Point this at your backend. Change to the hosted URL after deploy.
-const API_URL = "http://127.0.0.1:8000/api/v1/generate-brief/";
-
+// API base comes from .env (VITE_API_BASE), injected at build time by Vite.
 $(function () {
+  const API_URL = import.meta.env.VITE_API_BASE + "generate-brief/";
   const $form = $("#brief-form");
   const $btn = $("#submit-btn");
   const $error = $("#error");
   const $result = $("#result");
   const $resultContent = $("#result-content");
-  const $resultPlaceholder = $("#result-placeholder");
+  const $resultPlaceholder = $(
+    "#result-placeholder"
+  );
 
   // Clear the previous result and fall back to the placeholder.
   function resetResult() {
@@ -20,11 +21,16 @@ $(function () {
 
   // Pill selection: one active per group.
   $(".pills").on("click", ".pill", function () {
-    $(this).addClass("is-active").siblings().removeClass("is-active");
+    $(this)
+      .addClass("is-active")
+      .siblings()
+      .removeClass("is-active");
   });
 
   function selected(name) {
-    return $(`.pills[data-name="${name}"] .pill.is-active`).data("value");
+    return $(
+      `.pills[data-name="${name}"] .pill.is-active`
+    ).data("value");
   }
 
   function showError(msg) {
@@ -33,8 +39,14 @@ $(function () {
   }
 
   function loading(on) {
-    $btn.prop("disabled", on).toggleClass("is-loading", on);
-    $btn.find(".btn__label").text(on ? "Generating…" : "Generate Brief");
+    $btn
+      .prop("disabled", on)
+      .toggleClass("is-loading", on);
+    $btn
+      .find(".btn__label")
+      .text(
+        on ? "Generating…" : "Generate Brief"
+      );
   }
 
   $form.on("submit", function (e) {
@@ -50,11 +62,19 @@ $(function () {
     };
 
     // Client-side check mirrors the backend's required fields.
-    if (!payload.target || !payload.goal || !payload.tone) {
-      return showError("Please select a target, goal, and tone.");
+    if (
+      !payload.target ||
+      !payload.goal ||
+      !payload.tone
+    ) {
+      return showError(
+        "Please select a target, goal, and tone."
+      );
     }
     if (!payload.brand_name) {
-      return showError("Please enter a brand name.");
+      return showError(
+        "Please enter a brand name."
+      );
     }
 
     loading(true);
@@ -73,7 +93,13 @@ $(function () {
     $("#result-brief").text(data.brief || "");
 
     const fill = ($ul, items) =>
-      $ul.empty().append((items || []).map((t) => $("<li>").text(t)));
+      $ul
+        .empty()
+        .append(
+          (items || []).map((t) =>
+            $("<li>").text(t)
+          )
+        );
     fill($("#result-angles"), data.angles);
     fill($("#result-criteria"), data.criteria);
 
@@ -94,20 +120,35 @@ $(function () {
       );
     }
     if (xhr.status === 429) {
-      return showError("Too many requests. Please wait a minute and try again.");
+      return showError(
+        "Too many requests. Please wait a minute and try again."
+      );
     }
 
     const body = xhr.responseJSON;
-    if (xhr.status === 400 && body && typeof body === "object") {
+    if (
+      xhr.status === 400 &&
+      body &&
+      typeof body === "object"
+    ) {
       // DRF validation errors: { field: ["message", ...] }
       const msgs = Object.entries(body)
-        .map(([field, errs]) => `${field}: ${[].concat(errs).join(" ")}`)
+        .map(
+          ([field, errs]) =>
+            `${field}: ${[]
+              .concat(errs)
+              .join(" ")}`
+        )
         .join("\n");
-      return showError(msgs || "Please check your input.");
+      return showError(
+        msgs || "Please check your input."
+      );
     }
     if (body && body.error) {
       return showError(body.error);
     }
-    showError("Something went wrong. Please try again.");
+    showError(
+      "Something went wrong. Please try again."
+    );
   }
 });

@@ -14,7 +14,7 @@ media/
 .env.*
 !.env.example
 
-# ---- Node / frontend (if tooling is added later) ----
+# ---- Node / frontend ----
 node_modules/
 dist/
 build/
