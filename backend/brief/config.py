@@ -32,8 +32,6 @@ TARGETS = ["Instagram", "TikTok", "UGC"]
 GOALS = ["Awareness", "Conversions", "Content Assets"]
 TONES = ["Professional", "Friendly", "Playful"]
 
-# Lower temperature -> more consistent/predictable output (Professional);
-# higher temperature -> more varied word choice (Playful).
 TONE_TEMPERATURES = {
     "Professional": 0.1,
     "Friendly": 0.2,
@@ -49,8 +47,6 @@ class BriefRequestSerializer(serializers.Serializer):
 
 
 class BriefOutput(BaseModel):
-    """Structured-output contract enforced by the OpenAI Responses API."""
-
     brief: str
     angles: list[str]
     criteria: list[str]

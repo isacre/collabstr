@@ -1,6 +1,16 @@
 # Collabstr Brief Generator
 
-## Frontend 
+## Frontend
+Static HTML/CSS + jQuery, bundled with Vite. `VITE_API_BASE` (from `.env`) points at the
+backend API.
+
+```bash
+cd frontend
+npm install
+cp .env.example .env   # set VITE_API_BASE, e.g. http://127.0.0.1:8000/api/v1/
+npm run dev            # dev server on http://localhost:5173
+npm run build          # production build to dist/
+```
 
 ## Backend
 Django + DRF API that turns a campaign form (Target, Goal, Tone, Brand Name) into an
