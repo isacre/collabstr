@@ -1,0 +1,256 @@
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 var(--space-4);
+  min-height: 100vh;
+  background: var(--bw-white);
+  font-family: var(--font-family-base);
+  color: var(--color-text-default);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-5) var(--space-10);
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.topbar__logo { display: inline-flex; flex-shrink: 0; }
+.topbar__logo img { display: block; height: auto; }
+
+
+.hero {
+  max-width: var(--content-large);
+  margin: 0 auto var(--space-8);
+  padding: var(--space-16) var(--space-8);
+  background: var(--bw-black);
+  border-radius: var(--radius-3xl);
+  text-align: center;
+  color: var(--bw-white);
+}
+
+.hero__title {
+  margin: 0 0 var(--space-3);
+  font-size: var(--font-size-6xl);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.hero__accent {
+  background: var(--color-text-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__subtitle {
+  margin: 0 auto var(--space-10);
+  max-width: 34rem;
+  color: var(--gray-300);
+  font-size: var(--font-size-lg);
+}
+
+/* ---- Workspace: form left, result right; stacks on small screens ---- */
+.workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: start;
+  text-align: left;
+}
+
+.output { min-width: 0; }
+
+/* ---- Form card ---- */
+.card {
+  background: var(--card-bg);
+  color: var(--color-text-default);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-8);
+  text-align: left;
+}
+
+.field { margin-bottom: var(--space-6); }
+
+.field__label {
+  display: block;
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-subtle);
+}
+
+/* ---- Selectable pills ---- */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2-5);
+}
+
+.pill {
+  padding: var(--space-2-5) var(--space-4);
+  border: var(--border-default);
+  border-radius: var(--radius-full);
+  background: var(--bw-white);
+  color: var(--color-text-default);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: var(--transition-button);
+}
+
+.pill:hover { background: var(--color-interactive-hover); }
+
+.pill.is-active {
+  background: var(--pink-500);
+  border-color: var(--pink-500);
+  color: var(--bw-white);
+}
+
+.pill:focus-visible {
+  outline: var(--outline-brand);
+  outline-offset: var(--outline-offset);
+}
+
+/* ---- Text input ---- */
+.input {
+  width: 100%;
+  padding: var(--space-3-5) var(--space-4);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-lg);
+  background: var(--input-bg);
+  color: var(--input-color);
+  font: inherit;
+  font-size: var(--font-size-base);
+  transition: var(--transition-input);
+}
+
+.input::placeholder { color: var(--input-placeholder); }
+
+.input:focus {
+  outline: none;
+  border-color: var(--input-border-focus);
+  box-shadow: var(--shadow-focus-ring-brand);
+}
+
+/* ---- Submit button ---- */
+.btn {
+  width: 100%;
+  margin-top: var(--space-2);
+  padding: var(--space-4);
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--pink-500);
+  color: var(--bw-white);
+  font: inherit;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: var(--transition-button);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.btn:hover:not(:disabled) { background: var(--pink-600); }
+
+.btn:disabled { opacity: 0.7; cursor: progress; }
+
+.btn__spinner {
+  display: none;
+  width: 1em;
+  height: 1em;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: var(--bw-white);
+  border-radius: var(--radius-full);
+  animation: var(--animate-spin);
+}
+
+/* style.css references the spin keyframe but doesn't define it */
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.btn.is-loading .btn__spinner { display: inline-block; }
+
+/* ---- Error alert ---- */
+.alert {
+  margin-bottom: var(--space-6);
+  padding: var(--space-4);
+  border: var(--border-error);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-error);
+  color: var(--color-text-error);
+  text-align: left;
+  font-size: var(--font-size-sm);
+  white-space: pre-line;
+}
+
+/* ---- Result ---- */
+.result {
+  padding: var(--space-8);
+  background: var(--card-bg);
+  color: var(--color-text-default);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  text-align: left;
+}
+
+.result__placeholder {
+  margin: 0;
+  color: var(--color-text-subtlest);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+}
+
+.result__block { margin-bottom: var(--space-6); }
+.result__block:last-of-type { margin-bottom: 0; }
+
+.result__heading {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-text-brand);
+}
+
+.result__brief {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+}
+
+.result__list {
+  margin: 0;
+  padding-left: var(--space-5);
+  line-height: var(--line-height-relaxed);
+}
+
+.result__list li { margin-bottom: var(--space-2); }
+
+.result__stats {
+  margin: var(--space-6) 0 0;
+  padding-top: var(--space-4);
+  border-top: var(--divider-width) solid var(--divider-color);
+  color: var(--color-text-subtlest);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+}
+
+@media (max-width: 860px) {
+  .workspace { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  body { padding: var(--space-3); }
+  .hero { padding: var(--space-10) var(--space-5); }
+  .hero__title { font-size: var(--font-size-4xl); }
+  .card, .result { padding: var(--space-6); }
+}

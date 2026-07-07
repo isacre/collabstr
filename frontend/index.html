@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collabstr · Generate a Creator Brief</title>
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="topbar__logo" href="#" aria-label="Collabstr">
+      <img src="assets/logo.svg" alt="Collabstr" width="150">
+    </a>
+  </header>
+
+  <main class="hero">
+    <h1 class="hero__title">Create a<span class="hero__accent"> Brief</span> in seconds</h1>
+    <p class="hero__subtitle">Just tell us the platform, goal, tone, and brand. We'll write it for you.</p>
+
+    <div class="workspace">
+    <form id="brief-form" class="card" novalidate>
+      <div class="field">
+        <label class="field__label" for="brand_name">Brand name</label>
+        <input class="input" type="text" id="brand_name" name="brand_name"
+               maxlength="100" placeholder="e.g. Acme Co" autocomplete="organization">
+      </div>
+      <div class="field">
+        <label class="field__label">Target platform</label>
+        <div class="pills" data-name="target">
+          <button type="button" class="pill" data-value="Instagram">Instagram</button>
+          <button type="button" class="pill" data-value="TikTok">TikTok</button>
+          <button type="button" class="pill" data-value="UGC">UGC</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label">Goal</label>
+        <div class="pills" data-name="goal">
+          <button type="button" class="pill" data-value="Awareness">Awareness</button>
+          <button type="button" class="pill" data-value="Conversions">Conversions</button>
+          <button type="button" class="pill" data-value="Content Assets">Content Assets</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="field__label">Tone</label>
+        <div class="pills" data-name="tone">
+          <button type="button" class="pill" data-value="Professional">Professional</button>
+          <button type="button" class="pill" data-value="Friendly">Friendly</button>
+          <button type="button" class="pill" data-value="Playful">Playful</button>
+        </div>
+      </div>
+
+      
+
+      <button type="submit" class="btn" id="submit-btn">
+        <span class="btn__label">Generate Brief</span>
+        <span class="btn__spinner" aria-hidden="true"></span>
+      </button>
+    </form>
+
+    <div class="output">
+      <div id="error" class="alert" role="alert" hidden></div>
+      <section id="result" class="result">
+        <p id="result-placeholder" class="result__placeholder">
+          Your brief will appear here once you hit Generate.
+        </p>
+        <div id="result-content" hidden>
+          <div class="result__block">
+            <h2 class="result__heading">Brief</h2>
+            <p id="result-brief" class="result__brief"></p>
+          </div>
+          <div class="result__block">
+            <h2 class="result__heading">Content angles</h2>
+            <ul id="result-angles" class="result__list"></ul>
+          </div>
+          <div class="result__block">
+            <h2 class="result__heading">Creator criteria</h2>
+            <ul id="result-criteria" class="result__list"></ul>
+          </div>
+          <p id="result-stats" class="result__stats"></p>
+        </div>
+      </section>
+    </div>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+</body>
+</html>
