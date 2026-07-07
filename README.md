@@ -1,5 +1,10 @@
 # Collabstr Brief Generator
 
+# [Loom Video](https://www.loom.com/share/354d8792bbd44f158e75ef3c826ab0d4)
+
+# [Live DEMO](https://joyful-meerkat-a9ca4b.netlify.app/)
+> **Note:** The backend is hosted on a free-tier service and may experience a cold start. As a result, the first request may take longer than usual. If the request fails, please wait a moment and try again.
+
 ## Frontend
 Static HTML/CSS + jQuery, bundled with Vite. `VITE_API_BASE` (from `.env`) points at the
 backend API.
@@ -7,7 +12,7 @@ backend API.
 ```bash
 cd frontend
 npm install
-cp .env.example .env   # set VITE_API_BASE, e.g. http://127.0.0.1:8000/api/v1/
+cp .env.example .env   # set VITE_API_BASE, e.g. http://localhost:8000/api/v1/
 npm run dev            # dev server on http://localhost:5173
 npm run build          # production build to dist/
 ```
@@ -82,6 +87,5 @@ cp .env.example .env   # fill in OPENAI_API_KEY
   back `completion_tokens` from `stats`: observed completions landed around
   ~590 tokens for a 4-6 sentence brief + 3 angles + 3 criteria, so 800 leaves headroom against truncation while still bounding worst-case cost/latency.
 
-### 4. Demo
-- [ ] Record a <1 min Loom: submit the form → show loading state → show the returned
-  brief/angles/criteria + stats. Drop the link here.
+
+
